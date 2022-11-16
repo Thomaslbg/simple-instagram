@@ -1,0 +1,12 @@
+<div class="card">
+    <% @posts.each do |post| %>
+      <div class="d-flex card-user">
+        <%= cl_image_tag post.user.avatar.key, crop: :fill, class: "avatar"%>
+        <%= post.user.username %>
+      </div>
+      <%= cl_image_tag post.photo.key, crop: :fill %>
+      <div class="card-body">
+        <p class="card-text"><%= post.description %></p>
+      </div>
+  <% end %>
+</div>
