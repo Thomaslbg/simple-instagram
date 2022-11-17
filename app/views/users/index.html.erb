@@ -1,12 +1,23 @@
-<div class="card">
+<div class="feed container d-flex">
+  <div class=" col-6 d-flex flex-column">
     <% @posts.each do |post| %>
-      <div class="d-flex card-user">
-        <%= cl_image_tag post.user.avatar.key, crop: :fill, class: "avatar"%>
-        <%= post.user.username %>
+        <div class="card mt-3">
+          <div class="d-flex card-user">
+            <%= cl_image_tag post.user.avatar.key, crop: :fill, class: "avatar"%>
+            <%= post.user.username %>
+          </div>
+          <%= cl_image_tag post.photo.key, crop: :fill %>
+          <div class="card-body">
+            <p class="card-text"><%= post.description %></p>
+          </div>
       </div>
-      <%= cl_image_tag post.photo.key, crop: :fill %>
-      <div class="card-body">
-        <p class="card-text"><%= post.description %></p>
-      </div>
-  <% end %>
+    <% end %>
+  </div>
+  <div class="col-3 ">
+    <div class="container follower_suggestions m-3">
+      <h3>suggestions</h3>
+      <div>User 1</div>
+      <div>user 2</div>
+    </div>
+  </div>
 </div>

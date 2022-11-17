@@ -5,4 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
     has_one_attached :avatar, dependent: :destroy
   has_many :posts
+
+
+  def num_of_followers
+    0
+  end
+
+  def num_of_following
+    0
+  end
+  
 end
