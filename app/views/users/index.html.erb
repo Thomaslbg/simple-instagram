@@ -4,11 +4,18 @@
         <div class="card mt-3">
           <div class="d-flex card-user">
             <%= cl_image_tag post.user.avatar.key, crop: :fill, class: "avatar"%>
-            <%= post.user.username %>
+            <%= link_to post.user.username, profile_path(post.user.username), class: "username" %>
           </div>
           <%= cl_image_tag post.photo.key, crop: :fill %>
           <div class="card-body">
-            <p class="card-text"><%= post.description %></p>
+            <div class="post_btns">
+              <span><i class="fa-regular fa-heart like" data-id="<%= post.id %>"></i></span>
+              <span class="like"><i class="fa-regular fa-comment"></i></span>
+              <span class="like"><i class="fa-regular fa-bookmark"></i></span>
+            </div>
+            <p><strong><%= post.total_likes %> likes</strong></p>
+            <p class="card-text"><strong><%= post.user.username %></strong> <%= post.description %></p>
+            <p class="text-muted"><%= time_ago_in_words(post.created_at).gsub('about ','')  %> ago</p>
           </div>
       </div>
     <% end %>

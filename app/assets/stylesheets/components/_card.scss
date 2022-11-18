@@ -1,7 +1,7 @@
 .feed{
   margin-top: 30px;
   margin-left: 20px;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .card{
@@ -15,4 +15,30 @@
   align-items: center;
   padding: 8px;
   gap: 8px;
+}
+
+
+.username{
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.username:hover {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post_btns{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  i{
+    font-size: larger;
+    cursor: pointer;
+  }
+  i:hover{
+    color: grey;
+  }
 }
