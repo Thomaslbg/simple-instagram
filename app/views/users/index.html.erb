@@ -9,11 +9,11 @@
           <%= cl_image_tag post.photo.key, crop: :fill %>
           <div class="card-body">
             <div class="post_btns">
-              <span><i class="fa-regular fa-heart like" data-id="<%= post.id %>"></i></span>
+              <span><i class="fa-regular fa-heart like like-<%= post.id %> <%= "active" if post.likes.where(user: current_user).exists? %>" data-id="<%= post.id %>"></i></span>
               <span class="like"><i class="fa-regular fa-comment"></i></span>
               <span class="like"><i class="fa-regular fa-bookmark"></i></span>
             </div>
-            <p><strong><%= post.total_likes %> likes</strong></p>
+            <p><strong id="likes-post-<%= post.id %>"><%= post.likes_count %> likes</strong></p>
             <p class="card-text"><strong><%= post.user.username %></strong> <%= post.description %></p>
             <p class="text-muted"><%= time_ago_in_words(post.created_at).gsub('about ','')  %> ago</p>
           </div>
@@ -28,3 +28,8 @@
     </div>
   </div>
 </div>
+<div data-controller="hello">
+  <p data-target="hello.output"></p>
+</div>
+
+<%console%>

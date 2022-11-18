@@ -4,18 +4,25 @@ class LikesController < ApplicationController
   end
 
   def save_like
-    @like = Like.new(post, user = current_user )
+    @like = Like.new(post_id: params[:post_id], user: current_user )
+    @post_id = params[:post_id]
+    current_like = Like.where(post_id: params[:post_id], user: current_user)
 
-
-    respond_to do |f|
-      format.json{
-        if @like.save
-          {success: true}
+    respond_to do |format|
+      format.js{
+        if current_like.any?
+          current_like.first.destroy
+          @success = false
+        elsif @like.save
+          @success = true
         else
-          {success: false}
+          @success = false
         end
       }
     end
+    @post_likes = Post.find(@post_id).likes_count
+
+    render "posts/like"
   end
 
   def index
@@ -24,7 +31,7 @@ class LikesController < ApplicationController
 
   private
 
-  def like_params
-    params.require(:like).permit(:description, :photo)
-  end
+  # def like_params
+  #   params.require(:like).permit(:description, :photo)
+  # end
 end

@@ -34,6 +34,9 @@
   display: flex;
   gap: 8px;
   margin-bottom: 8px;
+  .active {
+      color: red;
+    }
   i{
     font-size: larger;
     cursor: pointer;
@@ -42,3 +45,4 @@
     color: grey;
   }
 }
+
