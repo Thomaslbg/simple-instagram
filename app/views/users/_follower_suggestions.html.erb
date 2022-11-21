@@ -1,0 +1,13 @@
+<% @followers_suggestions.each do |user| %>
+  <div class="recommended-follower">
+    <%= cl_image_tag user.avatar.key, crop: :fill, class: "avatar"%> <%= user.username  %>
+  </div>
+  <%= simple_form_for(:follower, url: follow_user_path, html: { method: :post }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.hidden_field :following, :value => user.id %>
+  <div class="form-inputs">
+  <div class="form-actions">
+    <%= f.button :submit, "follow", class: "btn" %>
+  </div>
+<% end %>
+<% end %>

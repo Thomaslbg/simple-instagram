@@ -7,7 +7,7 @@
     <div class="col-8 text-left">
       <div class="d-flex text-center">
         <h1><%= @user.username %></h1>
-        <%= link_to "Edit profile", edit_user_registration_path, class:"btn btn-light" %>
+        <%= link_to "Edit profile", edit_user_registration_path, class:"btn btn-light" if can_edit?(@user.id) %>
       </div>
       <div class="row gx-3">
         <div class="col profile-data">
