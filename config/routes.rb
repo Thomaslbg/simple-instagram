@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get "post/like/:post_id" => "likes#save_like", as: :save_like
   post "follower/user" => "users#follow_user", as: :follow_user
   resources :posts, only: %i[new create index]
-
+  resources :comments, only: %i[create destroy]
 end

@@ -17,6 +17,21 @@
             <p class="card-text"><strong><%= post.user.username %></strong> <%= post.description %></p>
             <p class="text-muted"><%= time_ago_in_words(post.created_at).gsub('about ','')  %> ago</p>
           </div>
+
+          <%= simple_form_for(@comment) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.hidden_field :post_id, :value => post.id %>
+              <%= f.input :comment %>
+
+            </div>
+            <div class="form-actions">
+                <%= f.button :submit, class:"btn-main", value:"Create comment"%>
+            </div>
+          <% end %>
+
       </div>
     <% end %>
   </div>

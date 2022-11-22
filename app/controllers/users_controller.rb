@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:profile]
   def index
     @posts = Post.all
-    @followers_suggestions = User.where.not(id: current_user.id)
+    @comment = Comment.new
+    following_users = Follower.where(follow_user: current_user.id).ids
+    following_users << current_user.id
+    @followers_suggestions = User.where.not(id: following_users)
   end
 
   def profile

@@ -12,11 +12,12 @@ class User < ApplicationRecord
                             foreign_key: 'following_user'
 
   def num_of_followers
-    0
+
+    Follower.where(following_user_id: self.id).count
   end
 
   def num_of_following
-    0
+    Follower.where(follow_user_id: self.id).count
   end
 
 end
