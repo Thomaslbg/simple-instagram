@@ -18,4 +18,4 @@ class Like < ApplicationRecord
   def total_likes
     100
   end
-end  
+end

@@ -1,5 +1,5 @@
 <div class="feed container d-flex">
-  <div class=" col-6 d-flex flex-column">
+  <div class=" col-9 d-flex flex-column">
     <% @posts.each do |post| %>
         <div class="card mt-3">
           <div class="d-flex card-user">
@@ -16,21 +16,21 @@
             <p><strong id="likes-post-<%= post.id %>"><%= post.likes_count %> likes</strong></p>
             <p class="card-text"><strong><%= post.user.username %></strong> <%= post.description %></p>
             <p class="text-muted"><%= time_ago_in_words(post.created_at).gsub('about ','')  %> ago</p>
-          </div>
+            <p> <%= "See all #{post.comments_count} comments" unless post.comments_count > 0 %> </p>
 
           <%= simple_form_for(@comment) do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-            <div class="form-inputs">
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.input :comment %>
-
-            </div>
-            <div class="form-actions">
-                <%= f.button :submit, class:"btn-main", value:"Create comment"%>
+            <%= f.hidden_field :post_id, :value => post.id %>
+            <div class="input-group">
+              <%= f.input :comment, label: false, class: "form-control post-comment" %>
+              <div class="">
+                  <%= f.button :submit, class:"btn btn-success float-right", value:"Post"%>
+              </div>
             </div>
           <% end %>
+          </div>
+
 
       </div>
     <% end %>
@@ -42,8 +42,8 @@
     </div>
   </div>
 </div>
-<div data-controller="hello">
+<%# <div data-controller="hello">
   <p data-target="hello.output"></p>
-</div>
+</div> %>
 
 <%console%>
